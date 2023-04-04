@@ -1,59 +1,86 @@
-import { EditIcon, ViewIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  SimpleGrid,
-  Flex,
-  Heading,
-  Text,
-  HStack,
-  Button,
-  Divider,
-  Avatar,
-} from "@chakra-ui/react";
-import { useLoaderData } from "react-router-dom";
+import "../index.scss";
+
+import DoughnutChart from "./Chart";
+import SignalGroups from "./SignalGroups";
 
 export default function Dashboard() {
-  const tasks = useLoaderData();
-
   return (
-    <SimpleGrid spacing="10px" minChildWidth="250px">
-      {tasks &&
-        tasks.map((task) => (
-          <Card key={task.id} borderTop="8px" borderColor="purple.400" bg="white">
-            <CardHeader>
-              <Flex gap={5}>
-                <Avatar src={task.img}/>
-                <Box>
-                  <Heading as="h3" size="md">
-                    {task.title}
-                  </Heading>
-                  <Text fontSize="sm">by {task.author}</Text>
-                </Box>
-              </Flex>
-            </CardHeader>
-            <CardBody color="gray.500">
-              {" "}
-              <Text>{task.description}</Text>{" "}
-            </CardBody>
-            <Divider color="gray.200"/>
-            <CardFooter>
-              <HStack>
-                <Button variant="ghost" leftIcon={ <ViewIcon/>} > Watch</Button>
-                <Button variant="ghost" leftIcon={ <EditIcon/>}> Comment</Button>
-              </HStack>
-            </CardFooter>
-          </Card>
-        ))}
-    </SimpleGrid>
+    <div className=" container">
+      <div className="wallet-container">
+        <div className="wallet">
+          <div className="wallet_header">
+            <h1>My Wallet</h1>
+          </div>
+          <div className="wallet_body">
+            <div className="coins">
+              <ul>
+                <li>
+                  <div className="btc">
+                    {" "}
+                    BTC <span className="percent"> 36.77%</span>{" "}
+                  </div>
+                </li>
+                <li>
+                  <div className="usdt ">
+                    {" "}
+                    USDT <span className="percent"> 36.77%</span>{" "}
+                  </div>
+                </li>
+                <li>
+                  <div className="others">
+                    {" "}
+                    Others<span className="percent"> 36.77%</span>{" "}
+                  </div>
+                </li>
+                <li>
+                  <div className="bnb">
+                    {" "}
+                    BNB <span className="percent"> 36.77%</span>{" "}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="chart">
+          <div className="balance">
+            <h2>$5000</h2>
+            <h3>Total Balance</h3>
+          </div>
+          <div className="donut">
+            <DoughnutChart />
+          </div>
+        </div>
+      </div>
+      <div className="exchange-wallet">
+        <div className="information-header">
+          <ul>
+            <li>Exchange wallet</li>
+            <li> coin</li>
+            <li> Balance</li>
+          </ul>
+        </div>
+        <div className="information-body">
+          <ul>
+            <li>Binance</li>
+            <li> BTC</li>
+            <li> 0.0000123</li>
+          </ul>
+
+          <ul>
+            <li>Binance</li>
+            <li> USDT</li>
+            <li> 0.0000123</li>
+          </ul>
+          <ul>
+            <li>Binance</li>
+            <li> BUSD</li>
+            <li> 0.0000123</li>
+          </ul>
+        </div>
+      </div>
+
+      <SignalGroups />
+    </div>
   );
 }
-
-export const getTask = async () => {
-  const res = await fetch("http://localhost:3000/tasks");
-
-  return await res.json();
-};

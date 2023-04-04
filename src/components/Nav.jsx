@@ -1,8 +1,6 @@
 import {
   Avatar,
   AvatarBadge,
-  Box,
-  Button,
   Flex,
   Heading,
   HStack,
@@ -10,40 +8,21 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-
+import "../index.scss";
+import logo from "../assets/images/logo.svg";
 const Nav = () => {
-  const toasts = useToast();
-
-
-  const showToast = () => {
-    toasts({
-      title: "Logged out",
-      description: "You have been logged out",
-      status: "info",
-      duration: 5000,
-      isClosable: true,
-      status: "success",
-      position: "top-right",
-      
-    });
-  }
-    return (
-    <Flex as="nav" alignItems='center' mb='40px'>
-      <Heading as="h1">Dojo Task</Heading>
-
-      <Spacer />
+  return (
+    <Flex className="nav" justifyContent='space-between'  as="nav" alignItems="center" >
+      <img src={logo} alt="" srcset="" />
+    
       <HStack spacing="20px">
-      <Avatar src="/public/img/mario.png">
-        <AvatarBadge width="1.3em"  bg="teal.500">
-        <Text fontSize="xs" color="white">3</Text>
-        </AvatarBadge>
+        <Avatar src="/public/img/mario.png">
+         
         </Avatar>
-        <Text>adetokunboogunnoiki28@gmail.com</Text>
-        <Button colorScheme="purple" onClick={showToast}> Logout</Button>
+        <Text>Martinez George</Text>
       </HStack>
     </Flex>
   );
 };
 
 export default Nav;
- 
